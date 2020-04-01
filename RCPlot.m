@@ -19,8 +19,9 @@ R1 = 10e3;
 tanphi = tan(Phase2);
 G = Amp2./Amp1;
 
-Rpr = ((1./(G.*(sqrt(1+(tanphi.^2)))))-1)/R1;
-Cpr = (Rpr+R1).*sqrt(((R1./(G.*(Rpr+R1))).^2)-1)./(Rpr.*R1.*2.*pi.*freq);
+Rpr = R1./((1./(G.*(sqrt(1+(tanphi.^2)))))-1);
+Cpr = (Rpr+R1).*sqrt(((Rpr./(G.*(Rpr+R1))).^2)-1)./(Rpr.*R1.*2.*pi.*freq);
+Cpr2 = -tanphi.*(R1+Rpr)./(R1.*Rpr.*2.*pi.*freq);
 
 figure();
 plot(freq,Rpr,'-');
@@ -28,7 +29,12 @@ legend('Rpr0','Rpr1','Rpr2','Rpr3','Rpr4');
 grid
 title('Rpr=f(freq)');
 figure();
-plot(freq,Cpr,'.-');
+plot(freq,Cpr,'-');
 legend('Cpr0','Cpr1','Cpr2','Cpr3','Cpr4');
 grid
 title('Cpr=f(freq)');
+figure();
+plot(freq,Cpr2,'-');
+legend('Cpr20','Cpr21','Cpr22','Cpr23','Cpr24');
+grid
+title('Cpr2=f(freq)');
