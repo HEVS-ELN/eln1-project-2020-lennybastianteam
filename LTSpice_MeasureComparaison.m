@@ -74,6 +74,6 @@ plot(time4,Rsim4,'-');
 plot(time5,Rsim5,'-');
 grid
 xlabel('time [s]');
-ylabel('Impendance [Ohm]');
+ylabel('Impedance [Ohm]');
 title('Simulated impedance in function of time');
 legend('Sim1','Sim2','Sim3','Sim4','Sim5');
